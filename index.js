@@ -1,57 +1,38 @@
 // Iteration 1: Names and Input
-const hacker1 = "Paulae";
+const hacker1 = "Thomas";
 console.log(`The driver's name is ${hacker1}`);
-const hacker2 = "Paula";
+const hacker2 = "Barbenoir";
 console.log(`The navigator's name is ${hacker2}`);
 
 // Iteration 2: Conditionals
 if (hacker1.length > hacker2.length) {
     console.log(`The driver has the longest name, it has ${hacker1.length} characters.`);
 } else if (hacker1.length < hacker2.length) {
-    console.log(`It seems that the navigator has the longest name, it has ${hacker2.length} characters.`);
+    console.log(`The navigator has the longest name, it has ${hacker2.length} characters.`);
 } else {
-    console.log(`Wow, you both have equally long names, ${hacker1.length} characters!`)
+    console.log(`Wow, you both have equally long names, ${hacker1.length} characters!`);
 }
+
 // Iteration 3: Loops
-let spacedCapitalName = "";
-for (let index = 0; index < hacker1.length; index++) {
-    spacedCapitalName += hacker1[index].toUpperCase() + " ";
+let capitalizedName = "";
+for (let i = 0; i < hacker1.length; i++) {
+    capitalizedName += hacker1[i].toUpperCase() + " ";
 }
-console.log(spacedCapitalName)
+console.log(capitalizedName);
 
 let reversedName = "";
-for (let index = 0; index < hacker1.length; index++) {
-    reversedName += hacker1[hacker1.length - index - 1];
+for (let i = hacker2.length - 1; i >= 0; i--) {
+    reversedName += hacker2[i];
 }
-console.log(reversedName)
+console.log(reversedName);
 
-let lexicalOrderName = "";
-let length = 0;
-
-// Choose the length of longest word
-if (hacker1.length < hacker2.length) {
-    length = hacker2.length
+if (hacker1 < hacker2) {
+    console.log("The driver's name goes first.");
+} else if (hacker2 < hacker1) {
+    console.log("Yo, the navigator goes first, definitely.");
 } else {
-    length = hacker1.length
+    console.log("What?! You both have the same name?");
 }
-
-/* 
-    For each iteration of the longest word
-
-*/
-for (let index = 0; index < length; index++) {
-    if (hacker1[index] < hacker2[index] || !hacker1[index] && hacker2[index]) {
-        console.log("The driver's name goes first.")
-        break;
-    } else if (hacker1[index] < hacker2[index] || hacker1[index] && !hacker2[index]) {
-        console.log("Yo, the navigator goes first, definitely.")
-        break;
-    } else if ((!hacker1[index + 1] && !hacker2[index + 1]) && hacker1[index] === hacker2[index]) {
-        console.log("What?! You both have the same name?")
-        break;
-    }
-}
-
 
 // Bonus Time! 1.
 const longText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus id erat iaculis suscipit. Etiam in porta augue. Cras vehicula nibh viverra efficitur ullamcorper. Phasellus nec sodales tellus, quis fringilla neque. Ut et tellus egestas, venenatis urna sed, aliquam quam. Ut mollis sodales sem sit amet laoreet. Phasellus lobortis maximus maximus. Nunc massa lorem, venenatis ut felis vel, fermentum tempus risus. Phasellus viverra dictum enim lobortis commodo. Sed id dignissim massa, non tempus urna. Cras laoreet scelerisque massa eu bibendum. Etiam congue massa in nunc tempus pretium. Nulla convallis velit eget fringilla aliquet. Integer ut elementum purus. Duis vitae feugiat odio. Proin justo diam, mattis ac interdum ut, gravida ac purus.
@@ -66,8 +47,8 @@ for (let index = 0; index < longText.length; index++) {
     if (longText[index] === " ") {
         numberOfWords++;
     }
-    const etWord = longText[index] + longText[index + 1]
-    if (etWord === "et") {
+    const etWord = longText[index - 1] + longText[index] + longText[index + 1] + longText[index + 2];
+    if (etWord === " et ") {
         numberOfEt++;
     }
 }
@@ -84,6 +65,8 @@ const phrases = [
     `taco cat`,
     `put it up`,
     `Was it a car or a cat I saw?" and "No 'x' in Nixon`,
+    `Un roc cornu`,
+    `Eva, can I see bees in a cave?`,
 ];
 for (let phrase = 0; phrase < phrases.length; phrase++) {
     let beginning = "";
@@ -91,11 +74,12 @@ for (let phrase = 0; phrase < phrases.length; phrase++) {
     let phraseToCheck = phrases[phrase].replace(/ |,|\?|"|'|!/g, "");
 
     for (let index = 0; index < phraseToCheck.length; index++) {
-
-            beginning += phraseToCheck[index].toLowerCase();
-            ending += phraseToCheck[phraseToCheck.length - index - 1].toLowerCase();    
+        beginning += phraseToCheck[index].toLowerCase();
+        ending += phraseToCheck[phraseToCheck.length - index - 1].toLowerCase();
     }
     if (beginning === ending) {
-        console.log(`${phrases[phrase]} is a palindrome.`)
+        console.log(`${phrases[phrase]} is a palindrome.`);
+    } else {
+        console.log(`${phrases[phrase]} is NOT a palindrome.`);
     }
 }
